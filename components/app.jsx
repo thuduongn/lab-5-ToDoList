@@ -20,16 +20,24 @@ import ToDoForm from "./todoform"
 
 
 function App() {
-  const [tasks] = useState([
+  const [tasks, setTasks] = useState([
     'Do laundry',
     'Go to gym',
     'Walk dog'
   ]);
 
+  const addTask = (taskText) => {
+    if (!taskText) {
+      console.error("Error: Task is empty");
+      return;
+    }
+    setTasks([...tasks, taskText]);
+  };
+
   return (
     <SafeAreaView>
       <ToDoList tasks={tasks} />
-      <ToDoForm />
+      <ToDoForm addTask={addTask}/>
     </SafeAreaView>
   );
 }
